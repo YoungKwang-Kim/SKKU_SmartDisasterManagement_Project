@@ -8,16 +8,18 @@ public class SimulationTest : MonoBehaviour
 {
     public GameObject beforeCellFraction;
     public GameObject afterCellFraction;
+    private string afterCellFractionName;
 
     private void Start()
     {
-
+        afterCellFractionName = afterCellFraction.name;
+        beforeCellFraction.SetActive(true);
     }
 
-    public void OnButtonClick()
+    public void SimulationButton()
     {
         beforeCellFraction.SetActive(false);
-        Instantiate(afterCellFraction, new Vector3(beforeCellFraction.transform.position.x, 0, beforeCellFraction.transform.position.z), Quaternion.identity);
+        Instantiate(afterCellFraction);
     }
 
     public void ResetButton()
@@ -26,7 +28,7 @@ public class SimulationTest : MonoBehaviour
         GameObject[] afterCellFractions = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject obj in afterCellFractions)
         {
-            if (obj.name == "AfterCellFractionTest(Clone)")
+            if (obj.name == afterCellFractionName+"(Clone)")
             {
                 Destroy(obj);
             }
