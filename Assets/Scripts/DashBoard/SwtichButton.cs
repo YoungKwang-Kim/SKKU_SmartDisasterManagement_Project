@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class SwtichButton : MonoBehaviour
 {
     [SerializeField] RectTransform HandleRectTransform;
+    [SerializeField] GameObject imageObject;
     
     [SerializeField] Color backgroundColorChange;
+   
 
     Image backImage;
     Color backgroundColor;
@@ -16,6 +18,7 @@ public class SwtichButton : MonoBehaviour
     Toggle toggle;
     Vector2 handlePosition;
 
+   
     void Awake()
     {
         toggle = GetComponent<Toggle>();
@@ -41,20 +44,23 @@ public class SwtichButton : MonoBehaviour
         {
             HandleRectTransform.anchoredPosition = handlePosition * -1;
             backImage.color = backgroundColorChange;
+            imageObject.SetActive(true);
+           
         }
         else
         {
             HandleRectTransform.anchoredPosition = handlePosition;
             backImage.color = backgroundColor;
+            imageObject.SetActive(false);
+          
         }
         //HandleRectTransform.anchoredPosition = on ? handlePosition * -1 : handlePosition;
 
         //backImage.color = on? backgroundColorChange : backgroundColor;
 
     }
-    private void OnDestroy()
-    {
-        toggle.onValueChanged.RemoveListener(OnSwitch);
-    }
 
-}
+
+   
+
+    }
