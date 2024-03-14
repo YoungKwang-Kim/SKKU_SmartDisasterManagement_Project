@@ -12,6 +12,7 @@ public class SaveCell : MonoBehaviour, ICell
 {
     //UI
     public TextMeshProUGUI numberLabel;
+    public Image droneImage;
 
 
     //Model

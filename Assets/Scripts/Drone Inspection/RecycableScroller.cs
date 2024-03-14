@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PolyAndCode.UI;
+using UnityEngine.UI;
 
 /// <summary>
 /// Demo controller class for Recyclable Scroll Rect. 
@@ -12,7 +13,7 @@ using PolyAndCode.UI;
 public struct ContactInfo
 {
     public string Number;
-
+    public Image Image;
 }
 
 public class RecycableScroller : MonoBehaviour, IRecyclableScrollRectDataSource
@@ -38,7 +39,6 @@ public class RecycableScroller : MonoBehaviour, IRecyclableScrollRectDataSource
     {
         if (_contactList != null) _contactList.Clear();
 
-        string[] genders = { "Male", "Female" };
         for (int i = 0; i < _dataLength; i++)
         {
             ContactInfo obj = new ContactInfo();
