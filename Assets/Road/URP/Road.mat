@@ -53,24 +53,24 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Centre_Gaps_Amount: 6.1
+    - _Centre_Gaps_Amount: 6
     - _Centre_Noise_Amount: 900
     - _Centre_Normal_Height: 1.5
-    - _Centre_Roughness: 0.17
-    - _Centre_Width: 0.07
-    - _Edge_Gap: 0.08
-    - _Edge_Noise_Amount: 850
+    - _Centre_Roughness: 0.56
+    - _Centre_Width: 0.04
+    - _Edge_Gap: 0.1
+    - _Edge_Noise_Amount: 900
     - _Edge_Normal_Height: 1
     - _Edge_Roughness: 0.34
-    - _Edge_Width: 0.08
+    - _Edge_Width: 0.06
     - _Normal_Strength: 0.008
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Road_Noise_Amount: 800
+    - _Road_Noise_Amount: 850
     - _Road_Normal_Height: 0.4
-    - _Road_Roughness: 0.41
+    - _Road_Roughness: 0.44
     m_Colors:
-    - _Centre_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Centre_Color: {r: 0.9150943, g: 0.9027615, b: 0.9027615, a: 0}
     - _Edge_Color: {r: 0.9339623, g: 0.6595529, b: 0.16363218, a: 0}
     - _Road_Color: {r: 0.0471698, g: 0.0471698, b: 0.0471698, a: 0}
   m_BuildTextureStacks: []
