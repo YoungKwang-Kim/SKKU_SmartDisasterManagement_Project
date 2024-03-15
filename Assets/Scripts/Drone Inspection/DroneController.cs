@@ -123,7 +123,6 @@ public class DroneController : MonoBehaviour
         // gameObject가 있는 지점에서 타겟포인트까지의 방향을 구한다.
         Vector3 relativePosition = targetPoint - gameobject.transform.position;
         relativePosition.Normalize();
-        Debug.DrawLine(gameobject.transform.position, relativePosition, Color.red, 5f);
         
 
         // 두 지점 차이의 방향으로 normal, 그 각도 사이를 RotateTowards로 돌리기. 한 프레임에 1도씩
