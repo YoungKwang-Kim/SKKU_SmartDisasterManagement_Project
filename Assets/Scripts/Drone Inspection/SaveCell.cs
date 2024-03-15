@@ -12,11 +12,11 @@ public class SaveCell : MonoBehaviour, ICell
 {
     //UI
     public TextMeshProUGUI numberLabel;
-    public Image droneImage;
+    public RawImage droneImage;
 
 
     //Model
-    private ContactInfo _contactInfo;
+    private DroneImageSaveInfo _droneImageSaveInfo;
     private int _cellIndex;
 
     private void Start()
@@ -26,12 +26,12 @@ public class SaveCell : MonoBehaviour, ICell
     }
 
     //This is called from the SetCell method in DataSource
-    public void ConfigureCell(ContactInfo contactInfo, int cellIndex)
+    public void ConfigureCell(DroneImageSaveInfo droneImageSaveInfo, int cellIndex)
     {
         _cellIndex = cellIndex;
-        _contactInfo = contactInfo;
-
-        numberLabel.text = contactInfo.Number;
+        _droneImageSaveInfo = droneImageSaveInfo;
+        numberLabel.text = droneImageSaveInfo.Number;
+        droneImage.texture = droneImageSaveInfo.droneImage;
     }
 
     // ¼¿À» ´­·¶À» ¶§
