@@ -8,6 +8,7 @@ public class SwtichButton : MonoBehaviour
 {
     [SerializeField] RectTransform HandleRectTransform;
     [SerializeField] GameObject imageObject;
+    [SerializeField] GameObject signObject;
     
     [SerializeField] Color backgroundColorChange;
    
@@ -44,14 +45,17 @@ public class SwtichButton : MonoBehaviour
         {
             HandleRectTransform.anchoredPosition = handlePosition * -1;
             backImage.color = backgroundColorChange;
-            imageObject.SetActive(true);
-           
+            imageObject.SetActive(false);
+            signObject.SetActive(false);
+
+
         }
         else
         {
             HandleRectTransform.anchoredPosition = handlePosition;
             backImage.color = backgroundColor;
-            imageObject.SetActive(false);
+            imageObject.SetActive(true);
+            signObject.SetActive(true);
           
         }
         //HandleRectTransform.anchoredPosition = on ? handlePosition * -1 : handlePosition;
