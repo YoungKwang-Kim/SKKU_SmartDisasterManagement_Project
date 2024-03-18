@@ -9,7 +9,7 @@ public class DroneController : MonoBehaviour
 {
     public GameObject myDrone;
     private Animator propAnim;
-    public Transform[] waypoints;
+    public Transform[] leftWaypoints, rightWaypoints, centerWaypoints;
     public Transform waypointBase;
     public float flightSpeed;
     public Button startButton;
@@ -19,8 +19,9 @@ public class DroneController : MonoBehaviour
     private int waypointIndex; // waypoint들의 인덱스
 
     bool isDroneStart = false;
+    bool isRotate = true;
 
-    public enum State { TakeOff, Flight, Return, Landing } //상태 설정
+    public enum State { TakeOff, LeftFlight, CenterFlight, RightFlight, Return, Landing } //상태 설정
     public State droneState; //열거형을 담을 변수
 
     private void Start()
@@ -58,36 +59,87 @@ public class DroneController : MonoBehaviour
         {
             //이륙
             case State.TakeOff:
-                if (waypoints.Length == 0)
+                if (leftWaypoints.Length == 0)
                 {
                     Debug.Log("웨이포인트를 설정해주세요.");
                     break;
                 }
-                else if (waypoints.Length > 0)
+                else if (leftWaypoints.Length > 0)
                 {
                     // 프로펠러 순서대로 회전시킨다.
                     StartPropeller();
                     // 이륙
                     myDrone.transform.Translate(Vector3.up * readySpeed * Time.deltaTime);
-                    if (myDrone.transform.position.y > waypoints[0].transform.position.y)
+                    if (myDrone.transform.position.y > leftWaypoints[0].transform.position.y)
                     {
-                        droneState = State.Flight;
+                        droneState = State.LeftFlight;
                     }
                 }
                 break;
-            //비행
-            case State.Flight:
+            //왼쪽면 비행
+            case State.LeftFlight:
                 //두 거리를 비교한 뒤에 거리의 차이가 있다면 해당 waypoint로 이동
-                if (Vector3.Distance(waypoints[waypointIndex].transform.position, myDrone.transform.position) > 0.1f)
+                if (Vector3.Distance(leftWaypoints[waypointIndex].transform.position, myDrone.transform.position) > 0.1f)
                 {
-                    Move(myDrone, waypoints[waypointIndex].transform.position, flightSpeed);
+                    Move(myDrone, leftWaypoints[waypointIndex].transform.position, flightSpeed);
                 }
                 //현재 waypoint에 도달한 상태라면(두 거리의 차가 0.1 이하라면)
                 else
                 {
                     waypointIndex++;
                     // waypoint를 다 돌았으면.
-                    if (waypointIndex > waypoints.Length - 1)
+                    if (waypointIndex > leftWaypoints.Length - 1)
+                    {
+                        waypointIndex = 0;
+                        isRotate = true;
+                        droneState = State.CenterFlight;
+                        
+                    }
+                }
+                break;
+            //가운데면 비행
+            case State.CenterFlight:
+                if (isRotate)
+                {
+                    StartCoroutine(RotateOverTime(myDrone, Vector3.up, 187.593f, 1.5f));
+                    isRotate = false;
+                }
+                //두 거리를 비교한 뒤에 거리의 차이가 있다면 해당 waypoint로 이동
+                if (Vector3.Distance(centerWaypoints[waypointIndex].transform.position, myDrone.transform.position) > 0.1f)
+                {
+                    Move(myDrone, centerWaypoints[waypointIndex].transform.position, flightSpeed);
+                }
+                //현재 waypoint에 도달한 상태라면(두 거리의 차가 0.1 이하라면)
+                else
+                {
+                    waypointIndex++;
+                    // waypoint를 다 돌았으면.
+                    if (waypointIndex > centerWaypoints.Length - 1)
+                    {
+                        waypointIndex = 0;
+                        isRotate = true;
+                        droneState = State.RightFlight;
+                    }
+                }
+                break;
+            //오른쪽 면 비행
+            case State.RightFlight:
+                if (isRotate)
+                {
+                    StartCoroutine(RotateOverTime(myDrone, Vector3.up, 277.593f, 1.5f));
+                    isRotate = false;
+                }
+                //두 거리를 비교한 뒤에 거리의 차이가 있다면 해당 waypoint로 이동
+                if (Vector3.Distance(rightWaypoints[waypointIndex].transform.position, myDrone.transform.position) > 0.1f)
+                {
+                    Move(myDrone, rightWaypoints[waypointIndex].transform.position, flightSpeed);
+                }
+                //현재 waypoint에 도달한 상태라면(두 거리의 차가 0.1 이하라면)
+                else
+                {
+                    waypointIndex++;
+                    // waypoint를 다 돌았으면.
+                    if (waypointIndex > leftWaypoints.Length - 1)
                     {
                         droneState = State.Return;
                     }
@@ -95,7 +147,6 @@ public class DroneController : MonoBehaviour
                 break;
             // 원래 자리로 복귀
             case State.Return:
-
                 Move(myDrone, waypointBase.transform.position, flightSpeed);
 
                 if (Vector3.Distance(waypointBase.transform.position, myDrone.transform.position) < 0.1f)
@@ -123,12 +174,25 @@ public class DroneController : MonoBehaviour
         // gameObject가 있는 지점에서 타겟포인트까지의 방향을 구한다.
         Vector3 relativePosition = targetPoint - gameobject.transform.position;
         relativePosition.Normalize();
-        
 
-        // 두 지점 차이의 방향으로 normal, 그 각도 사이를 RotateTowards로 돌리기. 한 프레임에 1도씩
-        // gameobject.transform.rotation = Quaternion.RotateTowards(gameobject.transform.rotation, Quaternion.LookRotation(relativePosition), 2f);
         // gameObject가 목표지점을 향해 날아간다.
         gameobject.transform.Translate(relativePosition * speed * Time.deltaTime, Space.World);
+    }
+
+    IEnumerator RotateOverTime(GameObject gameObject, Vector3 axis, float angle, float duration)
+    {
+        float elaspedTime = 0f;
+        Quaternion startRotation = gameObject.transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(axis * angle) * startRotation;
+
+        while (elaspedTime < duration)
+        {
+            float t = Mathf.Clamp01(elaspedTime / duration);
+            gameObject.transform.rotation = Quaternion.Lerp(startRotation, targetRotation, t);
+            elaspedTime += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.transform.rotation = targetRotation;
     }
 
     // 프로펠러를 회전시킨다.
