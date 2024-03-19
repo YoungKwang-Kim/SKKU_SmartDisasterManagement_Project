@@ -14,23 +14,24 @@ public class SaveCell : MonoBehaviour, ICell
     public TextMeshProUGUI numberLabel;
     public RawImage droneImage;
 
-
     //Model
     private DroneImageSaveInfo _droneImageSaveInfo;
     private int _cellIndex;
 
     private void Start()
     {
-        //Can also be done in the inspector
+        // Cell을 누르면 Damage Analyze 씬으로 넘어갑니다.
         GetComponent<Button>().onClick.AddListener(ButtonListener);
     }
 
-    //This is called from the SetCell method in DataSource
+    // DataSource 안에 SetCell 메소드 안에서 호출됩니다.
     public void ConfigureCell(DroneImageSaveInfo droneImageSaveInfo, int cellIndex)
     {
+        // Cell 안에 NumberLabel에 들어가는 번호가 1번부터 시작하도록 합니다.
+        int labelIndex = int.Parse(droneImageSaveInfo.Number) + 1;
         _cellIndex = cellIndex;
         _droneImageSaveInfo = droneImageSaveInfo;
-        numberLabel.text = droneImageSaveInfo.Number;
+        numberLabel.text = labelIndex.ToString();
         droneImage.texture = droneImageSaveInfo.droneImage;
     }
 

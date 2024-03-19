@@ -31,8 +31,6 @@ public class ScreenShot : MonoBehaviour
 
         // 드론카메라의 타겟텍스쳐를 초기화한다.
         camera.targetTexture = renderTexture;
-        RenderTexture.active = null;
-        Destroy(rt);
 
         return screenShot;
     }
