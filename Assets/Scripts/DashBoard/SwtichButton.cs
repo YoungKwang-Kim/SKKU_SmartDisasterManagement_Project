@@ -9,6 +9,7 @@ public class SwtichButton : MonoBehaviour
     [SerializeField] RectTransform HandleRectTransform;
     [SerializeField] GameObject imageObject;
     [SerializeField] GameObject signObject;
+    [SerializeField] GameObject cubeObject;
     
     [SerializeField] Color backgroundColorChange;
    
@@ -30,6 +31,7 @@ public class SwtichButton : MonoBehaviour
 
         backgroundColor = backImage.color;
        
+        cubeObject.SetActive(false);
 
         toggle.onValueChanged.AddListener(OnSwitch);
 
@@ -47,6 +49,7 @@ public class SwtichButton : MonoBehaviour
             backImage.color = backgroundColorChange;
             imageObject.SetActive(false);
             signObject.SetActive(false);
+            cubeObject.SetActive(true);
 
 
         }
@@ -56,6 +59,7 @@ public class SwtichButton : MonoBehaviour
             backImage.color = backgroundColor;
             imageObject.SetActive(true);
             signObject.SetActive(true);
+            cubeObject.SetActive(false);
           
         }
         //HandleRectTransform.anchoredPosition = on ? handlePosition * -1 : handlePosition;
