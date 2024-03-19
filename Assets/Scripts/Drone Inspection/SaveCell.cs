@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using PolyAndCode.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 //Cell class for demo. A cell in Recyclable Scroll Rect must have a cell class inheriting from ICell.
@@ -38,6 +39,6 @@ public class SaveCell : MonoBehaviour, ICell
     // ¼¿À» ´­·¶À» ¶§
     private void ButtonListener()
     {
-        
+        SceneManager.LoadScene(2);
     }
 }
