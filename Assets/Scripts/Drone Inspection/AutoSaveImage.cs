@@ -3,6 +3,7 @@ using UnityEngine;
 using PolyAndCode.UI;
 using UnityEngine.UI;
 using System.IO;
+using System.Collections;
 
 public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
 {
@@ -18,6 +19,8 @@ public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
 
     // CaptureScreenshot 메서드를 사용하기 위해 capture라는 속성을 선언해줍니다.
     private ScreenShot capture = new ScreenShot();
+    // 레이캐스트가 활성화되는 여부를 판별하는 변수입니다.
+    private bool isRayEnabled = true;
 
     // 저장될 이미지의 경로
     private string path = Application.dataPath + "/ScreenShotImages/";
@@ -32,34 +35,47 @@ public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
 
     private void Update()
     {
-        AutoScreenshot();
+        AutoScreenShot();
     }
 
     // 드론이 크랙을 찾아내면 스크린을 캡쳐하고 스크롤뷰에 추가되는 메서드
-    public void AutoScreenshot()
+    public void AutoScreenShot()
     {
         // 드론이 탐지할 Ray를 시각화합니다.
         Debug.DrawRay(droneCamera.transform.position, droneCamera.transform.forward * 3f, Color.red);
-        Debug.DrawRay(droneCamera.transform.position, droneCamera.transform.forward + new Vector3(0f, -0.1f, 0f) * 5f, Color.blue);
         RaycastHit hit;
-        // 드론 카메라 앞으로 3만큼의 레이를 쏴서 감지가 되면
-        if (Physics.Raycast(droneCamera.transform.position, Quaternion.Euler(0f, 8f, 0f) * Vector3.forward, out hit, 3f))
+        // Raycast가 활성화되어있으면
+        if (isRayEnabled )
         {
-            // 레이를 쐈는데 맞은 대상의 태그가 "Crack"이라면
-            if (hit.collider.CompareTag("Crack"))
+            // 드론 카메라 앞으로 3만큼의 레이를 쏴서 감지가 되면
+            if (Physics.Raycast(droneCamera.transform.position, droneCamera.transform.forward, out hit, 3f))
             {
-                // 스크린을 캡쳐하고 그것을 리스트에 추가합니다.
-                DroneImageSaveInfo obj = new DroneImageSaveInfo();
-                obj.Number = _AutoSaveList.Count.ToString();
-                obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _AutoSaveList, droneCameRenderTexture);
-                _AutoSaveList.Add(obj);
+                // 레이를 쐈는데 맞은 대상의 태그가 "Crack"이라면
+                if (hit.collider.CompareTag("Crack"))
+                {
+                    // 스크린을 캡쳐하고 그것을 리스트에 추가합니다.
+                    DroneImageSaveInfo obj = new DroneImageSaveInfo();
+                    obj.Number = _AutoSaveList.Count.ToString();
+                    obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _AutoSaveList, droneCameRenderTexture);
+                    _AutoSaveList.Add(obj);
 
-                // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
-                _AutoSave.ReloadData();
+                    // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
+                    _AutoSave.ReloadData();
+
+                    isRayEnabled = false;
+
+                    StartCoroutine(WaitForRay(1.3f));
+                }
             }
         }
     }
 
+    IEnumerator WaitForRay(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        isRayEnabled = true;
+    }
 
 
     #region DATA-SOURCE

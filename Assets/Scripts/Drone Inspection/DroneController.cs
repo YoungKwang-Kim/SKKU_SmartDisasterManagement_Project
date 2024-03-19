@@ -39,14 +39,13 @@ public class DroneController : MonoBehaviour
 
     private void Update()
     {
-        //if (isDroneStart)
-        //{
-        //    SwitchDroneState();
-        //}
-        SwitchDroneState();
+        if (isDroneStart)
+        {
+            SwitchDroneState();
+        }
     }
 
-    public void OnClickButton()
+    public void OnClickDroneStart()
     {
         isDroneStart = true;
     }
@@ -139,7 +138,7 @@ public class DroneController : MonoBehaviour
                 {
                     waypointIndex++;
                     // waypoint를 다 돌았으면.
-                    if (waypointIndex > leftWaypoints.Length - 1)
+                    if (waypointIndex > rightWaypoints.Length - 1)
                     {
                         droneState = State.Return;
                     }
@@ -147,9 +146,10 @@ public class DroneController : MonoBehaviour
                 break;
             // 원래 자리로 복귀
             case State.Return:
-                Move(myDrone, waypointBase.transform.position, flightSpeed);
+                Vector3 returnPoint = new Vector3(waypointBase.position.x, myDrone.transform.position.y, waypointBase.transform.position.z);
+                Move(myDrone, returnPoint, flightSpeed);
 
-                if (Vector3.Distance(waypointBase.transform.position, myDrone.transform.position) < 0.1f)
+                if (Vector3.Distance(returnPoint, myDrone.transform.position) < 0.1f)
                 {
                     droneState = State.Landing;
                 }
@@ -159,7 +159,7 @@ public class DroneController : MonoBehaviour
             case State.Landing:
 
                 myDrone.transform.Translate(Vector3.down * readySpeed * Time.deltaTime);
-                if (myDrone.transform.position.y < 0.5)
+                if (myDrone.transform.position.y < waypointBase.transform.position.y)
                 {
                     readySpeed = 0;
                     PausePropeller();
