@@ -155,7 +155,7 @@ public class SensorDataReceiver : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Debug.LogWarning("Failed to read sensor data from Arduino.");
+            //Debug.LogWarning("Failed to read sensor data from Arduino.");
         }
     }
 }
