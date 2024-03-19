@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace PolyAndCode.UI
 {
-
     /// <summary>
     /// Recyling system for Vertical type.
     /// </summary>

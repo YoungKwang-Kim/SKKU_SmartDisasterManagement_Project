@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7329776174832089331}
   - component: {fileID: -823476899300049070}
   m_Layer: 5
-  m_Name: Auto Save Cell
+  m_Name: Menual Save Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
