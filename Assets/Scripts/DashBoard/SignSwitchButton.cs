@@ -8,7 +8,7 @@ public class SignSwtichButton : MonoBehaviour
 {
     [SerializeField] RectTransform HandleRectTransform;
     //[SerializeField] GameObject imageObject;
-    [SerializeField] GameObject signObject;
+    [SerializeField] GameObject wordSignObject;
     //[SerializeField] GameObject cubeObject;
 
     [SerializeField] Color backgroundColorChange;
@@ -48,7 +48,7 @@ public class SignSwtichButton : MonoBehaviour
             HandleRectTransform.anchoredPosition = handlePosition * -1;
             backImage.color = backgroundColorChange;
             //imageObject.SetActive(false);
-            signObject.SetActive(false);
+            wordSignObject.SetActive(false);
             //cubeObject.SetActive(true);
 
 
@@ -57,8 +57,8 @@ public class SignSwtichButton : MonoBehaviour
         {
             HandleRectTransform.anchoredPosition = handlePosition;
             backImage.color = backgroundColor;
-           // imageObject.SetActive(true);
-            signObject.SetActive(true);
+            // imageObject.SetActive(true);
+            wordSignObject.SetActive(true);
             //cubeObject.SetActive(false);
 
         }
