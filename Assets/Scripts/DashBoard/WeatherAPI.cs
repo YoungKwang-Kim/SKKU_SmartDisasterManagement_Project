@@ -58,13 +58,13 @@ public class WeatherAPI : MonoBehaviour
     {
         string iconName = "";
 
-        if (weatherId >= 200 && weatherId <= 299) iconName = "thunder"; // Thunderstorm
-        else if (weatherId >= 300 && weatherId <= 399) iconName = "drizzle"; // Drizzle
-        else if (weatherId >= 500 && weatherId <= 599) iconName = "Rain"; // Rain
-        else if (weatherId >= 600 && weatherId <= 699) iconName = "snow"; // Snow
-        else if (weatherId >= 700 && weatherId <= 799) iconName = "fog"; // fog
-        else if (weatherId >= 801 && weatherId <= 899) iconName = "cloud"; // Clouds
-        else iconName = "sun";
+        if (weatherId >= 200 && weatherId <= 299) iconName = "Thunder_J"; // Thunderstorm
+        else if (weatherId >= 300 && weatherId <= 399) iconName = "Drizzle_J"; // Drizzle
+        else if (weatherId >= 500 && weatherId <= 599) iconName = "Rain_J"; // Rain
+        else if (weatherId >= 600 && weatherId <= 699) iconName = "Snow_J"; // Snow
+        else if (weatherId >= 700 && weatherId <= 799) iconName = "Fog_J"; // fog
+        else if (weatherId >= 801 && weatherId <= 899) iconName = "Cloud_J"; // Clouds
+        else iconName = "Sun_J";
 
         // Resources 폴더 아래의 Icons 폴더에서 이미지를 불러오기
         Sprite weatherSprite = Resources.Load<Sprite>("Icons/" + iconName);
