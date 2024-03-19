@@ -101,7 +101,7 @@ public class DroneController : MonoBehaviour
             case State.CenterFlight:
                 if (isRotate)
                 {
-                    StartCoroutine(RotateOverTime(myDrone, Vector3.up, 187.593f, 1.5f));
+                    StartCoroutine(RotateOverTime(myDrone, Vector3.up, 90f, 1.5f));
                     isRotate = false;
                 }
                 //두 거리를 비교한 뒤에 거리의 차이가 있다면 해당 waypoint로 이동
@@ -126,7 +126,7 @@ public class DroneController : MonoBehaviour
             case State.RightFlight:
                 if (isRotate)
                 {
-                    StartCoroutine(RotateOverTime(myDrone, Vector3.up, 277.593f, 1.5f));
+                    StartCoroutine(RotateOverTime(myDrone, Vector3.up, 90f, 1.5f));
                     isRotate = false;
                 }
                 //두 거리를 비교한 뒤에 거리의 차이가 있다면 해당 waypoint로 이동
@@ -178,9 +178,10 @@ public class DroneController : MonoBehaviour
         // gameObject가 목표지점을 향해 날아간다.
         gameobject.transform.Translate(relativePosition * speed * Time.deltaTime, Space.World);
     }
-
+    // 오브젝트를 duration동안 axis축을 기준으로 angle만큼 회전시키는 코루틴함수입니다.
     IEnumerator RotateOverTime(GameObject gameObject, Vector3 axis, float angle, float duration)
     {
+        // 경과시간
         float elaspedTime = 0f;
         Quaternion startRotation = gameObject.transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(axis * angle) * startRotation;

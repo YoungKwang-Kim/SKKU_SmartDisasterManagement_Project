@@ -13,20 +13,22 @@ public struct DroneImageSaveInfo
 
 public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSource
 {
+    // 수동으로 스크린샷을 한 이미지를 올릴 스크롤뷰입니다.
     [SerializeField]
     RecyclableScrollRect _MenualSave;
-
+    // 캡쳐할 드론 카메라 화면입니다.
     [SerializeField]
     private Camera droneCamera;
-
+    // 스크린캡쳐하고 LiveView 화면을 다시 드론 카메라로 바꿔줄 용도입니다.
     [SerializeField]
     private RenderTexture droneCameRenderTexture;
 
-    // 스크린샷 메서드
+    // CaptureScreenshot 메서드를 사용하기 위해 capture라는 속성을 선언해줍니다.
     private ScreenShot capture = new ScreenShot();
 
     // 저장될 이미지의 경로
     private string path = Application.dataPath + "/ScreenShotImages/";
+    // 수동으로 캡쳐될 이미지들의 리스트입니다.
     private List<DroneImageSaveInfo> _MenualSaveList = new List<DroneImageSaveInfo>();
 
     private void Awake()
