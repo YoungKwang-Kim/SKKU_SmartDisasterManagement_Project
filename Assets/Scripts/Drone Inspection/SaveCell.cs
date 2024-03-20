@@ -4,13 +4,16 @@ using PolyAndCode.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
-//Cell class for demo. A cell in Recyclable Scroll Rect must have a cell class inheriting from ICell.
-//The class is required to configure the cell(updating UI elements etc) according to the data during recycling of cells.
-//The configuration of a cell is done through the DataSource SetCellData method.
-//Check RecyclableScrollerDemo class
 public class SaveCell : MonoBehaviour, ICell
 {
+    // Damage Analyze Ã¢
+    public GameObject damageChartScreen;
+    public GameObject damageChartCell;
+    private GameObject canvas;
+
+    // Damage Analyze Ã¢À» Å°°í ²ô±â
+    bool isDamageChartOpen = false;
+
     //UI
     public TextMeshProUGUI numberLabel;
     public RawImage droneImage;
@@ -21,6 +24,7 @@ public class SaveCell : MonoBehaviour, ICell
 
     private void Start()
     {
+        canvas = GameObject.Find("Canvas");
         // CellÀ» ´©¸£¸é Damage Analyze ¾ÀÀ¸·Î ³Ñ¾î°©´Ï´Ù.
         GetComponent<Button>().onClick.AddListener(ButtonListener);
     }
@@ -36,9 +40,22 @@ public class SaveCell : MonoBehaviour, ICell
         droneImage.texture = droneImageSaveInfo.droneImage;
     }
 
-    // ¼¿À» ´­·¶À» ¶§
+    // ¼¿À» ´­·¶À» ¶§ Damage Inspector ¾ÀÀÌ »ý¼ºµÈ´Ù.
     private void ButtonListener()
     {
-        SceneManager.LoadScene(2);
+        if (GameObject.Find("damageChartScreen") != null && GameObject.Find("damageChartCell") != null)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDamageChartOpen = !isDamageChartOpen;
+                damageChartScreen.SetActive(isDamageChartOpen);
+                damageChartCell.SetActive(isDamageChartOpen);
+            }
+        }
+        else
+        {
+            Instantiate(damageChartScreen, canvas.transform);
+            Instantiate(damageChartCell, canvas.transform);
+        }
     }
 }

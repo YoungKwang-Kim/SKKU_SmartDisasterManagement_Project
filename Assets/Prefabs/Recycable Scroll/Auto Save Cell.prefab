@@ -269,6 +269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdee724ffa1daaf4fb562ab55ce8345b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageChartScreen: {fileID: 4070518508262264134, guid: 6d2b01c94c242d6479a62f24eab215a1,
+    type: 3}
+  damageChartCell: {fileID: 6578681521172373957, guid: 42aaf96eaf928a64195401bd340ad6d3,
+    type: 3}
   numberLabel: {fileID: 397677963484067016}
   droneImage: {fileID: 5383772159762619786}
 --- !u!1 &7996174129455848948
