@@ -3,17 +3,10 @@ using UnityEngine.UI;
 using PolyAndCode.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class SaveCell : MonoBehaviour, ICell
 {
-    // Damage Analyze Ã¢
-    public GameObject damageChartScreen;
-    public GameObject damageChartCell;
-    private GameObject canvas;
-
-    // Damage Analyze Ã¢À» Å°°í ²ô±â
-    bool isDamageChartOpen = false;
-
     //UI
     public TextMeshProUGUI numberLabel;
     public RawImage droneImage;
@@ -22,8 +15,17 @@ public class SaveCell : MonoBehaviour, ICell
     private DroneImageSaveInfo _droneImageSaveInfo;
     private int _cellIndex;
 
+    // Damage Analyze Ã¢
+    public GameObject damageChartScreen;
+    private GameObject canvas;
+    private RawImage damageImage;
+
+    private SaveImageAndScrollView menualScrollView;
+
     private void Start()
     {
+        menualScrollView = GameObject.FindObjectOfType<SaveImageAndScrollView>();
+
         canvas = GameObject.Find("Canvas");
         // CellÀ» ´©¸£¸é Damage Analyze ¾ÀÀ¸·Î ³Ñ¾î°©´Ï´Ù.
         GetComponent<Button>().onClick.AddListener(ButtonListener);
@@ -43,19 +45,22 @@ public class SaveCell : MonoBehaviour, ICell
     // ¼¿À» ´­·¶À» ¶§ Damage Inspector ¾ÀÀÌ »ý¼ºµÈ´Ù.
     private void ButtonListener()
     {
-        if (GameObject.Find("damageChartScreen") != null && GameObject.Find("damageChartCell") != null)
+        if (GameObject.Find("damageChartScreen" + numberLabel.text) != null)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                isDamageChartOpen = !isDamageChartOpen;
-                damageChartScreen.SetActive(isDamageChartOpen);
-                damageChartCell.SetActive(isDamageChartOpen);
+                damageChartScreen = GameObject.Find("damageChartScreen" + numberLabel.text);
+                damageChartScreen.SetActive(true);
             }
         }
         else
         {
-            Instantiate(damageChartScreen, canvas.transform);
-            Instantiate(damageChartCell, canvas.transform);
+            int damageIndex = int.Parse(numberLabel.text) - 1;
+            GameObject prefabInstance = Instantiate(damageChartScreen, canvas.transform);
+            damageImage = prefabInstance.GetComponentInChildren<RawImage>();
+            prefabInstance.name = "damageChartScreen" + numberLabel.text;
+
+            damageImage.texture = droneImage.texture;
         }
     }
 }

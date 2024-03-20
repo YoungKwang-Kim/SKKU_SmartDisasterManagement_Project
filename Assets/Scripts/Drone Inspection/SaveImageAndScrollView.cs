@@ -4,11 +4,17 @@ using PolyAndCode.UI;
 using UnityEngine.UI;
 using System.IO;
 
-//Dummy Data model for demonstration
+//스크린샷 Cell에 들어갈 Data
 public struct DroneImageSaveInfo
 {
     public string Number;
     public Texture2D droneImage;
+}
+
+// Damage Inspector 씬의 안에 들어갈 Data
+public struct DamageChartInfo
+{
+    public Texture2D damageImage;
 }
 
 public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSource
@@ -26,6 +32,11 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
     // CaptureScreenshot 메서드를 사용하기 위해 capture라는 속성을 선언해줍니다.
     private ScreenShot capture = new ScreenShot();
 
+    
+    public List<DamageChartInfo> _damageChartList { get; set; }
+
+    
+
     // 저장될 이미지의 경로
     private string path = Application.dataPath + "/ScreenShotImages/";
     // 수동으로 캡쳐될 이미지들의 리스트입니다.
@@ -34,6 +45,7 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
     private void Awake()
     {
         _MenualSave.DataSource = this;
+        _damageChartList = new List<DamageChartInfo>();
     }
 
     // 스크린샷 버튼을 누르면 스크린을 캡쳐하고 스크롤뷰에 추가되는 메서드
@@ -44,6 +56,10 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
         obj.Number = _MenualSaveList.Count.ToString();
         obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _MenualSaveList, droneCameRenderTexture);
         _MenualSaveList.Add(obj);
+
+        DamageChartInfo damageImage = new DamageChartInfo();
+        damageImage.damageImage = obj.droneImage;
+        _damageChartList.Add(damageImage);
 
         // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
         _MenualSave.ReloadData();
