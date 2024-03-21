@@ -305,17 +305,17 @@ RectTransform:
   - {fileID: 286584063}
   - {fileID: 1248911990}
   - {fileID: 528469089}
-  - {fileID: 844403223}
   - {fileID: 828738684}
+  - {fileID: 844403223}
   - {fileID: 898937021}
-  - {fileID: 491561492}
-  - {fileID: 203547260}
-  - {fileID: 1082691499}
-  - {fileID: 1924880744}
   - {fileID: 80917970}
-  - {fileID: 1894219841}
   - {fileID: 1812709700}
+  - {fileID: 1894219841}
   - {fileID: 1581587280}
+  - {fileID: 491561492}
+  - {fileID: 1082691499}
+  - {fileID: 203547260}
+  - {fileID: 1924880744}
   - {fileID: 95515322}
   - {fileID: 1282628253}
   - {fileID: 1667176571}
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pressure1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2496,7 +2496,7 @@ GameObject:
   - component: {fileID: 80917972}
   - component: {fileID: 80917971}
   m_Layer: 5
-  m_Name: YellowLight_Leg
+  m_Name: YellowLight_Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4318,7 +4318,7 @@ GameObject:
   - component: {fileID: 203547262}
   - component: {fileID: 203547261}
   m_Layer: 5
-  m_Name: RedLight_Leg (1)
+  m_Name: RedLight_Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12845,7 +12845,7 @@ GameObject:
   - component: {fileID: 491561494}
   - component: {fileID: 491561493}
   m_Layer: 5
-  m_Name: RedLight_Leg
+  m_Name: RedLight_Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13470,6 +13470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523836162}
+  - component: {fileID: 523836163}
   m_Layer: 0
   m_Name: Dashboard Manager
   m_TagString: Untagged
@@ -13492,6 +13493,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &523836163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523836161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04677785d0aaa0541843832d09191fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreenLight:
+  - {fileID: 528469090}
+  - {fileID: 828738685}
+  - {fileID: 844403224}
+  - {fileID: 898937022}
+  YellowLight:
+  - {fileID: 80917971}
+  - {fileID: 1812709701}
+  - {fileID: 1894219842}
+  - {fileID: 1581587281}
+  RedLight:
+  - {fileID: 491561493}
+  - {fileID: 1082691500}
+  - {fileID: 203547261}
+  - {fileID: 1924880745}
+  leftDistanceSensor: {fileID: 1142133085}
+  leftPressureSensor: {fileID: 28070199}
+  rightDistanceSensor: {fileID: 2092546450}
+  rightPressureSensor: {fileID: 745349875}
+  yellowDistanceValue: 20
+  yellowPressureValue: 20
+  redDistanceValue: 40
+  redPressureValue: 40
 --- !u!1001 &525068153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13662,12 +13698,12 @@ GameObject:
   - component: {fileID: 528469091}
   - component: {fileID: 528469090}
   m_Layer: 5
-  m_Name: GreenLight_Leg
+  m_Name: GreenLight_Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &528469089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18303,7 +18339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pressure2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20214,7 +20250,7 @@ GameObject:
   - component: {fileID: 828738686}
   - component: {fileID: 828738685}
   m_Layer: 5
-  m_Name: GreenLight_Road
+  m_Name: GreenLight_Road_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20826,12 +20862,12 @@ GameObject:
   - component: {fileID: 844403225}
   - component: {fileID: 844403224}
   m_Layer: 5
-  m_Name: GreenLight_Leg (1)
+  m_Name: GreenLight_Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &844403223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22605,7 +22641,7 @@ GameObject:
   - component: {fileID: 898937023}
   - component: {fileID: 898937022}
   m_Layer: 5
-  m_Name: GreenLight_Road (1)
+  m_Name: GreenLight_Road_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26239,7 +26275,7 @@ GameObject:
   - component: {fileID: 1082691501}
   - component: {fileID: 1082691500}
   m_Layer: 5
-  m_Name: RedLight_Road
+  m_Name: RedLight_Road_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27474,7 +27510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Distance1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -37695,7 +37731,7 @@ GameObject:
   - component: {fileID: 1581587282}
   - component: {fileID: 1581587281}
   m_Layer: 5
-  m_Name: YellowLight_Road (1)
+  m_Name: YellowLight_Road_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43177,7 +43213,7 @@ GameObject:
   - component: {fileID: 1812709702}
   - component: {fileID: 1812709701}
   m_Layer: 5
-  m_Name: YellowLight_Road
+  m_Name: YellowLight_Road_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45007,7 +45043,7 @@ GameObject:
   - component: {fileID: 1894219843}
   - component: {fileID: 1894219842}
   m_Layer: 5
-  m_Name: YellowLight_Leg (1)
+  m_Name: YellowLight_Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45449,7 +45485,7 @@ GameObject:
   - component: {fileID: 1924880746}
   - component: {fileID: 1924880745}
   m_Layer: 5
-  m_Name: RedLight_Road(1)
+  m_Name: RedLight_Road_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49996,7 +50032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Distance2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
