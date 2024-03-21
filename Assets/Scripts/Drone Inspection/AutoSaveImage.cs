@@ -30,7 +30,6 @@ public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
     private void Awake()
     {
         _AutoSave.DataSource = this;
-        Debug.Log(Vector3.forward);
     }
 
     private void Update()
