@@ -1308,7 +1308,7 @@ GameObject:
   - component: {fileID: 8880444045957810607}
   - component: {fileID: 6269750628912601326}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Damage Chart Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1437,6 +1437,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 1782044004546217721, guid: 5b29371e78dd8ea4cbd37185209e1253,
+    type: 3}
+  DamageChartPanel: {fileID: 5559600450487892983}
+  DamageCell: {fileID: -1039200144462576643, guid: e8f8d6d2514cbc345a239c6504131ab4,
     type: 3}
 --- !u!1 &4634895416859549139
 GameObject:
@@ -2105,7 +2108,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7442180370482091754}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 419779303747759970}
+        m_TargetAssemblyTypeName: DrawLine, Assembly-CSharp
+        m_MethodName: OnClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6327705071185353601
 GameObject:
   m_ObjectHideFlags: 0

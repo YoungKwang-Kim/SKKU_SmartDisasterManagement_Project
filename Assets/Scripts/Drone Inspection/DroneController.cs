@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DroneController : MonoBehaviour
 {
     public GameObject myDrone;
+    public GameObject droneLight;
     private Animator propAnim;
     public Transform[] leftWaypoints, rightWaypoints, centerWaypoints;
     public Transform waypointBase;
@@ -28,6 +29,7 @@ public class DroneController : MonoBehaviour
     {
         // 프로펠러 애니메이터 컴포넌트 가져오기.
         propAnim = myDrone.GetComponent<Animator>();
+        droneLight.SetActive(false);
 
         waypointIndex = 0;
         // 드론의 처음 상태를 이륙상태로 만든다.
@@ -65,6 +67,7 @@ public class DroneController : MonoBehaviour
                 }
                 else if (leftWaypoints.Length > 0)
                 {
+                    droneLight.SetActive (true);
                     // 프로펠러 순서대로 회전시킨다.
                     StartPropeller();
                     // 이륙
@@ -146,6 +149,7 @@ public class DroneController : MonoBehaviour
                 break;
             // 원래 자리로 복귀
             case State.Return:
+                droneLight.SetActive(false);
                 Vector3 returnPoint = new Vector3(waypointBase.position.x, myDrone.transform.position.y, waypointBase.transform.position.z);
                 Move(myDrone, returnPoint, flightSpeed);
 
