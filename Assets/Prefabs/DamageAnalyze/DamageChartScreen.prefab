@@ -727,6 +727,7 @@ RectTransform:
   m_Children:
   - {fileID: 3268011290098268848}
   - {fileID: 3254890866292455949}
+  - {fileID: 8931848907795061420}
   m_Father: {fileID: 3666267104356403718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -1024,7 +1025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3268011290098268848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1403,7 +1404,6 @@ RectTransform:
   m_Children:
   - {fileID: 1542157630803639713}
   - {fileID: 2430926357853268581}
-  - {fileID: 8931848907795061420}
   - {fileID: 3594089998330950995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2134,7 +2134,7 @@ GameObject:
   - component: {fileID: 2871577055748623091}
   - component: {fileID: 6966512601093761715}
   m_Layer: 5
-  m_Name: InspectionButton
+  m_Name: GoBackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2152,11 +2152,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3666267104356403718}
+  m_Father: {fileID: 2430926357853268581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 505}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7757268822731405506
