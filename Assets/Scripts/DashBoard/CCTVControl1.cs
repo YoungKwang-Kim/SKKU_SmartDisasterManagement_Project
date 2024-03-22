@@ -6,7 +6,7 @@ public class CCTVControl1 : MonoBehaviour
 {
     public float turnSpeed = 20f; // 카메라 회전 속도
     public Button toggleButton; // UI Button
-    public TextMeshProUGUI textMeshPro; // TextMeshPro
+    public RawImage rawImage; // RawImage
 
     private bool isEnabled = false; // 스크립트 활성화 여부
 
@@ -14,8 +14,8 @@ public class CCTVControl1 : MonoBehaviour
     {
         // UI Button의 클릭 이벤트에 ToggleScript 함수 연결
         toggleButton.onClick.AddListener(ToggleScript);
-        // 초기에는 TextMeshPro를 비활성화
-        textMeshPro.gameObject.SetActive(false);
+        // 초기에는 rawImage를 비활성화
+        rawImage.gameObject.SetActive(false);
     }
 
     void Update()
@@ -39,7 +39,7 @@ public class CCTVControl1 : MonoBehaviour
     void ToggleScript()
     {
         isEnabled = !isEnabled;
-        // 버튼이 눌려진 상태일 때만 TextMeshPro를 활성화
-        textMeshPro.gameObject.SetActive(isEnabled);
+        // 버튼이 눌려진 상태일 때만 rawImage를 활성화
+        rawImage.gameObject.SetActive(isEnabled);
     }
 }
