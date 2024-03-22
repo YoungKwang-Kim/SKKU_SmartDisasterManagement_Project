@@ -1245,7 +1245,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1222571343}
-        m_TargetAssemblyTypeName: MainloadScene, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainSceneLoad, Assembly-CSharp
         m_MethodName: GoToDroneInspectionScene
         m_Mode: 1
         m_Arguments:
@@ -3676,7 +3676,7 @@ GameObject:
   - component: {fileID: 1222571342}
   - component: {fileID: 1222571343}
   m_Layer: 0
-  m_Name: ExitScript
+  m_Name: Mainload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3706,7 +3706,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1222571341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8aec1836e968d64ab9a17842122b109, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b837792ac7677d4e9fae414934d72c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1238382570
@@ -4840,6 +4840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myDrone: {fileID: 1718423908}
+  droneLight: {fileID: 0}
   leftWaypoints:
   - {fileID: 1933951072}
   - {fileID: 1365166949}
