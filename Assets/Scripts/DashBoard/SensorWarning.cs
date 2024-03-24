@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Unity.Notifications.Android;
 
 
 
@@ -42,11 +42,31 @@ public class SensorWarning : MonoBehaviour
 
             if (isDangerous)
             {
-                 //알림 전송
-                NotificationManager.SendAndroidNotification("경고!", warningLight.name + "에서 위험한 수치가 감지되었습니다.");
+                //알림 전송
+                //NotificationManager.SendAndroidNotification("경고!", warningLight.name + "에서 위험한 수치가 감지되었습니다.");
+
+                // 알림 전송
+                SendNotification(warningLight.name);
             }
         }
     }
 
-    
+    // 알림을 전송하는 메서드
+    private void SendNotification(string sensorName)
+    {
+        string notificationTitle = "경고!";
+        string notificationMessage = sensorName + "에서 위험한 수치가 감지되었습니다.";
+
+        // 알림 생성
+        var notification = new AndroidNotification
+        {
+            Title = notificationTitle,
+            Text = notificationMessage,
+            FireTime = System.DateTime.Now.AddSeconds(1),
+            SmallIcon = "icon_0"
+        };
+
+        // 알림 전송
+        AndroidNotificationCenter.SendNotification(notification, "default_channel_id");
+    }
 }
