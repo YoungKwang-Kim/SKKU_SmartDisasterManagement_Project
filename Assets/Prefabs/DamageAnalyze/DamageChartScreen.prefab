@@ -1383,6 +1383,7 @@ GameObject:
   - component: {fileID: 3666267104356403718}
   - component: {fileID: -1975531652781340968}
   - component: {fileID: 419779303747759970}
+  - component: {fileID: 3861291889434620928}
   m_Layer: 5
   m_Name: DamageChartScreen
   m_TagString: Untagged
@@ -1441,6 +1442,19 @@ MonoBehaviour:
   DamageChartPanel: {fileID: 5559600450487892983}
   DamageCell: {fileID: -1039200144462576643, guid: e8f8d6d2514cbc345a239c6504131ab4,
     type: 3}
+--- !u!114 &3861291889434620928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209710952457354314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607bd5b5e45a39645b7280e62f363ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  captureButton: {fileID: 7745066679102478494}
 --- !u!1 &4634895416859549139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,6 +2147,7 @@ GameObject:
   - component: {fileID: 7757268822731405506}
   - component: {fileID: 2871577055748623091}
   - component: {fileID: 6966512601093761715}
+  - component: {fileID: 3186106334761635686}
   m_Layer: 5
   m_Name: GoBackButton
   m_TagString: Untagged
@@ -2240,7 +2255,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2871577055748623091}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3186106334761635686}
+        m_TargetAssemblyTypeName: GoDroneInspectionScene, Assembly-CSharp
+        m_MethodName: GoDroneScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3186106334761635686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327705071185353601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a90a02ed2fa71a42b2177a6ea84e903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageChartScreen: {fileID: 4209710952457354314}
 --- !u!1 &6659508162636698991
 GameObject:
   m_ObjectHideFlags: 0

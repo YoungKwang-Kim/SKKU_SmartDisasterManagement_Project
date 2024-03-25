@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BackButton : MonoBehaviour
 {
-    void Start()
+  public void MainScene()
     {
-        Button[] backButton = GetComponentsInChildren<Button>();
-        backButton[1].onClick.AddListener(DisableScreen);
-    }
+        SceneManager.LoadScene("DashBoard Scene_Juheee");
 
-    private void DisableScreen()
-    {
-        gameObject.SetActive(false);
     }
 }
