@@ -108,7 +108,7 @@ public class BridgeLight : MonoBehaviour
         }
         else
         {
-            YellowLight[0].enabled = false;
+            RedLight[0].enabled = false;
         }
         // ¿ÞÂÊ µµ·Î
         if (redDistanceValue < leftDistanceValue)
