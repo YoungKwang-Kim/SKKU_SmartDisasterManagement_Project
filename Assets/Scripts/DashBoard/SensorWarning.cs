@@ -30,7 +30,7 @@ public class SensorWarning : MonoBehaviour
         WarningLight(rightPressureSensor, dangerPressureValue, RedLightImage[3]);
     }
 
-    // 센서 값에 따라 경고 불빛을 토글합니다.
+    // 센서 값에 따라 경고 불빛
     private void WarningLight(TextMeshProUGUI sensorValue, float dangerValue, Image warningLight)
     {
         float sensorFloatValue;
@@ -51,11 +51,11 @@ public class SensorWarning : MonoBehaviour
         }
     }
 
-    // 알림을 전송하는 메서드
+    // 알림을 전송하는 메서드(구현실패)
     private void SendNotification(string sensorName)
     {
         string notificationTitle = "경고!";
-        string notificationMessage = sensorName + "에서 위험한 수치가 감지되었습니다.";
+        string notificationMessage = sensorName + "에서 위험한 수치가 감지";
 
         // 알림 생성
         var notification = new AndroidNotification
