@@ -61,18 +61,20 @@ public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
                     // 스크린을 캡쳐하고 그것을 리스트에 추가합니다.
                     DroneImageSaveInfo obj = new DroneImageSaveInfo();
                     DamageChartInfo damageImage = new DamageChartInfo();
+                    GameObject newObj = new GameObject();
+                    
                     obj.Number = _AutoSaveList.Count.ToString();
                     obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _AutoSaveList, droneCameRenderTexture);
+
+                    float hitDistance = Vector3.Distance(droneCamera.transform.position, hit.point);
+                    obj.Distance = hitDistance;
                     damageImage.damageImage = obj.droneImage;
                     damageImage.ID = menualScrollView._damageChartList.Count;
                     obj.ID = damageImage.ID;
+
                     _AutoSaveList.Add(obj);
                     menualScrollView._damageChartList.Add(damageImage);
-
-
-
-
-
+                    menualScrollView._damageChartScreenLists.Add(newObj);
 
                     // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
                     _AutoSave.ReloadData();

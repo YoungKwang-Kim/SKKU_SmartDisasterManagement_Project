@@ -1382,7 +1382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3666267104356403718}
   - component: {fileID: -1975531652781340968}
-  - component: {fileID: 419779303747759970}
+  - component: {fileID: -2682586712545324334}
   - component: {fileID: 3861291889434620928}
   m_Layer: 5
   m_Name: DamageChartScreen
@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fdbc5a8f893b46976db31e2968d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &419779303747759970
+--- !u!114 &-2682586712545324334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1440,7 +1440,7 @@ MonoBehaviour:
   linePrefab: {fileID: 1782044004546217721, guid: 5b29371e78dd8ea4cbd37185209e1253,
     type: 3}
   DamageChartPanel: {fileID: 5559600450487892983}
-  DamageCell: {fileID: -1039200144462576643, guid: e8f8d6d2514cbc345a239c6504131ab4,
+  DamageCell: {fileID: 40394791585918810, guid: e8f8d6d2514cbc345a239c6504131ab4,
     type: 3}
 --- !u!114 &3861291889434620928
 MonoBehaviour:
@@ -1708,7 +1708,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2274911485030176665}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2682586712545324334}
+        m_TargetAssemblyTypeName: DrawLine, Assembly-CSharp
+        m_MethodName: ResetButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4920336792741839541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,7 +2135,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 419779303747759970}
+      - m_Target: {fileID: -2682586712545324334}
         m_TargetAssemblyTypeName: DrawLine, Assembly-CSharp
         m_MethodName: OnClickButton
         m_Mode: 1
