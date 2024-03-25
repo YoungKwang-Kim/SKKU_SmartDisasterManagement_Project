@@ -20,6 +20,8 @@ public class SaveCell : MonoBehaviour, ICell
     private GameObject canvas;
     private RawImage damageImage;
 
+    private int damageImageIndex;
+
     private SaveImageAndScrollView menualScrollView;
 
     private void Start()
@@ -40,11 +42,14 @@ public class SaveCell : MonoBehaviour, ICell
         _droneImageSaveInfo = droneImageSaveInfo;
         numberLabel.text = labelIndex.ToString();
         droneImage.texture = droneImageSaveInfo.droneImage;
+        damageImageIndex = droneImageSaveInfo.ID;
+
     }
 
     // ¼¿À» ´­·¶À» ¶§ Damage Inspector ¾ÀÀÌ »ý¼ºµÈ´Ù.
     private void ButtonListener()
     {
+
         if (GameObject.Find("damageChartScreen" + numberLabel.text) != null)
         {
             if (Input.GetMouseButtonDown(0))

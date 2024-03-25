@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.2198529, g: 0.3861912, b: 0.58792615, a: 1}
+  m_IndirectSpecularColor: {r: 0.22013779, g: 0.38719642, b: 0.58935, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12239,9 +12239,9 @@ MonoBehaviour:
   rightDistanceSensor: {fileID: 2092546450}
   rightPressureSensor: {fileID: 745349875}
   yellowDistanceValue: 3
-  yellowPressureValue: 3
-  redDistanceValue: 5
-  redPressureValue: 5
+  yellowPressureValue: 100
+  redDistanceValue: 7
+  redPressureValue: 200
 --- !u!114 &523836164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12263,8 +12263,8 @@ MonoBehaviour:
   leftPressureSensor: {fileID: 2092546450}
   rightDistanceSensor: {fileID: 28070199}
   rightPressureSensor: {fileID: 745349875}
-  dangerDistanceValue: 6
-  dangerPressureValue: 6
+  dangerDistanceValue: 7
+  dangerPressureValue: 200
 --- !u!1001 &525068153
 PrefabInstance:
   m_ObjectHideFlags: 0

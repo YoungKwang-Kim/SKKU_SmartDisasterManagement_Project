@@ -26,10 +26,16 @@ public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
     private string path = Application.dataPath + "/ScreenShotImages/";
     // 자동으로 캡쳐될 이미지들의 리스트
     private List<DroneImageSaveInfo> _AutoSaveList = new List<DroneImageSaveInfo>();
+    private SaveImageAndScrollView menualScrollView;
 
     private void Awake()
     {
         _AutoSave.DataSource = this;
+    }
+
+    private void Start()
+    {
+        menualScrollView = GameObject.FindObjectOfType<SaveImageAndScrollView>();
     }
 
     private void Update()
@@ -54,9 +60,19 @@ public class AutoSaveImage : MonoBehaviour, IRecyclableScrollRectDataSource
                 {
                     // 스크린을 캡쳐하고 그것을 리스트에 추가합니다.
                     DroneImageSaveInfo obj = new DroneImageSaveInfo();
+                    DamageChartInfo damageImage = new DamageChartInfo();
                     obj.Number = _AutoSaveList.Count.ToString();
                     obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _AutoSaveList, droneCameRenderTexture);
+                    damageImage.damageImage = obj.droneImage;
+                    damageImage.ID = menualScrollView._damageChartList.Count;
+                    obj.ID = damageImage.ID;
                     _AutoSaveList.Add(obj);
+                    menualScrollView._damageChartList.Add(damageImage);
+
+
+
+
+
 
                     // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
                     _AutoSave.ReloadData();

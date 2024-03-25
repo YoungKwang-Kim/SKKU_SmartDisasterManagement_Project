@@ -9,12 +9,14 @@ public struct DroneImageSaveInfo
 {
     public string Number;
     public Texture2D droneImage;
+    public int ID;
 }
 
 // Damage Inspector 씬의 안에 들어갈 Data
 public struct DamageChartInfo
 {
     public Texture2D damageImage;
+    public int ID;
 }
 
 public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSource
@@ -53,13 +55,18 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
     {
         // 스크린을 캡쳐하고 그것을 리스트에 추가합니다.
         DroneImageSaveInfo obj = new DroneImageSaveInfo();
+        DamageChartInfo damageImage = new DamageChartInfo();
         obj.Number = _MenualSaveList.Count.ToString();
         obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _MenualSaveList, droneCameRenderTexture);
+        damageImage.damageImage = obj.droneImage;
+        damageImage.ID = _damageChartList.Count;
+        obj.ID = damageImage.ID;
+        _damageChartList.Add(damageImage);
         _MenualSaveList.Add(obj);
 
-        DamageChartInfo damageImage = new DamageChartInfo();
-        damageImage.damageImage = obj.droneImage;
-        _damageChartList.Add(damageImage);
+        
+        
+        
 
         // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
         _MenualSave.ReloadData();
