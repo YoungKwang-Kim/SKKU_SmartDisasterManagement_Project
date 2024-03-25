@@ -3,6 +3,8 @@ using UnityEngine;
 using PolyAndCode.UI;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.Experimental.AI;
+using Unity.Burst.CompilerServices;
 
 //스크린샷 Cell에 들어갈 Data
 public struct DroneImageSaveInfo
@@ -10,6 +12,8 @@ public struct DroneImageSaveInfo
     public string Number;
     public Texture2D droneImage;
     public int ID;
+    // 균열과의 거리
+    public float Distance;
 }
 
 // Damage Inspector 씬의 안에 들어갈 Data
@@ -34,10 +38,12 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
     // CaptureScreenshot 메서드를 사용하기 위해 capture라는 속성을 선언해줍니다.
     private ScreenShot capture = new ScreenShot();
 
-    
+    // DamageChartScreen안에 들어갈 데이터들의 리스트
     public List<DamageChartInfo> _damageChartList { get; set; }
+    // DamageChartScreen들의 리스트
+    public List<GameObject> _damageChartScreenLists { get; set; }
 
-    
+
 
     // 저장될 이미지의 경로
     private string path = Application.dataPath + "/ScreenShotImages/";
@@ -48,6 +54,7 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
     {
         _MenualSave.DataSource = this;
         _damageChartList = new List<DamageChartInfo>();
+        _damageChartScreenLists = new List<GameObject>();
     }
 
     // 스크린샷 버튼을 누르면 스크린을 캡쳐하고 스크롤뷰에 추가되는 메서드
@@ -56,18 +63,25 @@ public class SaveImageAndScrollView : MonoBehaviour, IRecyclableScrollRectDataSo
         // 스크린을 캡쳐하고 그것을 리스트에 추가합니다.
         DroneImageSaveInfo obj = new DroneImageSaveInfo();
         DamageChartInfo damageImage = new DamageChartInfo();
+        GameObject newObj = new GameObject();
+        float hitDistance = 0;
+
         obj.Number = _MenualSaveList.Count.ToString();
         obj.droneImage = capture.CaptureScreenshot(path, droneCamera, _MenualSaveList, droneCameRenderTexture);
+        // 균열에 레이캐스트를 쏴서 거리 구하기
+        if (Physics.Raycast(droneCamera.transform.position, droneCamera.transform.forward, out RaycastHit hit, 3f))
+        {
+            hitDistance = Vector3.Distance(droneCamera.transform.position, hit.point);
+        }
+
+        obj.Distance = hitDistance;
         damageImage.damageImage = obj.droneImage;
         damageImage.ID = _damageChartList.Count;
         obj.ID = damageImage.ID;
+
         _damageChartList.Add(damageImage);
         _MenualSaveList.Add(obj);
-
-        
-        
-        
-
+        _damageChartScreenLists.Add(newObj);
         // 추가된 데이터를 스크롤뷰에 반영해서 다시 불러옵니다.
         _MenualSave.ReloadData();
     }

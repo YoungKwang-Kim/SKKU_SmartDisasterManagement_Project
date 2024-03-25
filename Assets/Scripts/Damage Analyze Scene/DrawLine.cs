@@ -18,6 +18,11 @@ public class DrawLine : MonoBehaviour
     // Line Renderer의 색깔
     private List<Color> colorList = new List<Color>{ Color.red, Color.green, Color.blue, Color.cyan, Color.yellow  };
     private int colorNum = 0;
+    //DistanceType을 참조
+    private SaveCell saveCell;
+
+    // Line Renderer 오브젝트
+    private List<GameObject> lrCells = new List<GameObject>();
 
     // Line Renderer 컴포넌트를 담을 변수
     LineRenderer lr;
@@ -26,6 +31,7 @@ public class DrawLine : MonoBehaviour
 
     private void Start()
     {
+        saveCell = FindObjectOfType<SaveCell>();
         isSketchButtonOn = false;
         cellNum = 1;
     }
@@ -46,6 +52,7 @@ public class DrawLine : MonoBehaviour
 
     public void DrawLineAndGetDistance()
     {
+        Debug.Log(saveCell.distanceType);
         // 첫번째 좌클릭
         if (Input.GetMouseButtonDown(0) && points.Count == 0)
         {
@@ -56,6 +63,7 @@ public class DrawLine : MonoBehaviour
             points.Add(Input.mousePosition);
             lr.positionCount = 1;
             lr.SetPosition(0, new Vector3(points[0].x, points[0].y, -36));
+            lrCells.Add(go);
         }
         // 두번째 이상 좌클릭
         else if (Input.GetMouseButtonDown(0) && lr.positionCount > 0)
@@ -67,12 +75,25 @@ public class DrawLine : MonoBehaviour
         // 마우스 우클릭했을 때
         else if (Input.GetMouseButtonDown(1))
         {
+            
             // 총 거리값 구하기
             float total = 0;
-            for (int i = 0; i < points.Count - 1; i++)
+            if (saveCell.distanceType == SaveCell.DistanceType.Far)
             {
-                float distance = Vector3.Distance(points[i], points[i + 1]);
-                total += distance;
+                for (int i = 0; i < points.Count - 1; i++)
+                {
+                    float distance = Vector3.Distance(points[i], points[i + 1]);
+                    total += distance;
+                }
+            }
+            else if (saveCell.distanceType == SaveCell.DistanceType.Near)
+            {
+                for (int i = 0; i < points.Count - 1; i++)
+                {
+                    float distance = Vector3.Distance(points[i], points[i + 1]);
+                    total += distance;
+                }
+                total /= 2.8f;
             }
             
             DamageCell.SetDamageCell(cellNum, (points.Count < 3) ? "Straight" : "Thunder", total, DamageChartPanel);
@@ -89,5 +110,22 @@ public class DrawLine : MonoBehaviour
             }
             Debug.Log(total);
         }
+    }
+    public void ResetButton()
+    {
+        // Line Renderer 프리팹들을 삭제한다.
+        foreach (GameObject cell in lrCells)
+        {
+            Destroy(cell);
+        }
+        lrCells.Clear();
+
+        // 생성된 DamageCell을 삭제합니다.
+        DamageCell.DeleteAllDamageCells();
+
+        // 클릭한 포인트들을 초기화합니다.
+        points.Clear();
+        cellNum = 1;
+        colorNum = 0;
     }
 }
