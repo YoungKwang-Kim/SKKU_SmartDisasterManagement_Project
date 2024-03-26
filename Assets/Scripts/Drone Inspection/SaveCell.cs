@@ -19,10 +19,20 @@ public class SaveCell : MonoBehaviour, ICell
     public GameObject damageChartScreen;
     private GameObject canvas;
     private RawImage damageImage;
+    private int damageImageIndex;
 
     private SaveImageAndScrollView menualScrollView;
 
-    private void Start()
+    public enum DistanceType
+    {
+        Near,
+        Far
+    }
+
+    public DistanceType distanceType { get; set; }
+
+
+    private void Awake()
     {
         menualScrollView = GameObject.FindObjectOfType<SaveImageAndScrollView>();
 
@@ -40,27 +50,41 @@ public class SaveCell : MonoBehaviour, ICell
         _droneImageSaveInfo = droneImageSaveInfo;
         numberLabel.text = labelIndex.ToString();
         droneImage.texture = droneImageSaveInfo.droneImage;
-    }
-
-    // 셀을 눌렀을 때 Damage Inspector 씬이 생성된다.
-    private void ButtonListener()
-    {
-        if (GameObject.Find("damageChartScreen" + numberLabel.text) != null)
+        damageImageIndex = droneImageSaveInfo.ID;
+        if (droneImageSaveInfo.Distance > 2)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                damageChartScreen = GameObject.Find("damageChartScreen" + numberLabel.text);
-                damageChartScreen.SetActive(true);
-            }
+            distanceType = DistanceType.Far;
         }
         else
         {
-            int damageIndex = int.Parse(numberLabel.text) - 1;
-            GameObject prefabInstance = Instantiate(damageChartScreen, canvas.transform);
-            damageImage = prefabInstance.GetComponentInChildren<RawImage>();
-            prefabInstance.name = "damageChartScreen" + numberLabel.text;
+            distanceType = DistanceType.Near;
+        }
+    }
 
+    // 셀을 눌렀을 때 Damage Inspector 씬이 생성된다.
+    public void ButtonListener()
+    {
+        Debug.Log(distanceType.ToString());
+        // 리스트에서 이름이 "damageChartScreen" + damageImageIndex인 GameObject를 찾습니다.
+        GameObject existingDamageChartScreen = menualScrollView._damageChartScreenLists.Find(obj => obj.name == "damageChartScreen" + damageImageIndex);
+
+        if (existingDamageChartScreen != null)
+        {
+            existingDamageChartScreen.SetActive(true);
+        }
+        else
+        {
+            // 오브젝트가 존재하지 않을 때 새로 생성
+            GameObject prefabInstance = Instantiate(damageChartScreen, canvas.transform);
+            prefabInstance.name = "damageChartScreen" + damageImageIndex;
+            Debug.Log(prefabInstance.name);
+
+            // 추가된 부분: RawImage 설정
+            damageImage = prefabInstance.GetComponentInChildren<RawImage>();
             damageImage.texture = droneImage.texture;
+
+            // 리스트에 새로 생성한 GameObject를 추가합니다.
+            menualScrollView._damageChartScreenLists.Add(prefabInstance);
         }
     }
 }

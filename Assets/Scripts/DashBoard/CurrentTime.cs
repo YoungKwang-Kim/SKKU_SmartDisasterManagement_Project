@@ -21,6 +21,13 @@ public class CurrentTime : MonoBehaviour
     {
         currentDateTime = DateTime.Now;
         currentDate.text = currentDateTime.ToString("yyyy년  MM월  dd일");
-        currentTime.text = currentDateTime.ToString("HH:mm");
+
+        string timeFormat = "tt h:mm";
+        string currentTimeString = currentDateTime.ToString(timeFormat);
+
+        //오전 오후 텍스트
+        currentTimeString = currentTimeString.Replace("AM", "오전").Replace("PM", "오후");
+
+        currentTime.text = currentTimeString;
     }
 }

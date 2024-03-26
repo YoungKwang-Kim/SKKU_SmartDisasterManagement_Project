@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 5614188452622339264}
   - component: {fileID: 1261198927378464610}
   - component: {fileID: 5644056769560044127}
-  - component: {fileID: -1039200144462576643}
+  - component: {fileID: 40394791585918810}
   m_Layer: 5
   m_Name: DamageCell
   m_TagString: Untagged
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-1039200144462576643
+--- !u!114 &40394791585918810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,7 +362,7 @@ MonoBehaviour:
   _number: {fileID: 6821322315477000778}
   _damaged: {fileID: 6161888027079172026}
   _value: {fileID: 1255599498346972511}
-  space: 5
+  space: 15
 --- !u!1 &8951562405609583793
 GameObject:
   m_ObjectHideFlags: 0
