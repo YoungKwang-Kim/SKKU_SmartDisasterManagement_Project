@@ -51,6 +51,7 @@ public class BridgeLight : MonoBehaviour
     
     private void YellowLightState()
     {
+        // 받아오는 데이터
         float leftDistanceValue = float.Parse(leftDistanceSensor.text);
         float rightDistanceValue = float.Parse(rightDistanceSensor.text);
         float leftPressureValue = float.Parse(leftPressureSensor.text);
@@ -66,7 +67,7 @@ public class BridgeLight : MonoBehaviour
             YellowLight[0].enabled = false;
         }
         // 왼쪽 도로
-        if (yellowDistanceValue < leftDistanceValue)
+        if (yellowDistanceValue > leftDistanceValue)
         {
             YellowLight[1].enabled = true;
         }
@@ -84,7 +85,7 @@ public class BridgeLight : MonoBehaviour
             YellowLight[2].enabled = false;
         }
         // 오른쪽도로
-        if (yellowDistanceValue < rightDistanceValue)
+        if (yellowDistanceValue > rightDistanceValue)
         {
             YellowLight[3].enabled = true;
         }
@@ -111,7 +112,7 @@ public class BridgeLight : MonoBehaviour
             RedLight[0].enabled = false;
         }
         // 왼쪽 도로
-        if (redDistanceValue < leftDistanceValue)
+        if (redDistanceValue > leftDistanceValue)
         {
             RedLight[1].enabled = true;
         }
@@ -129,7 +130,7 @@ public class BridgeLight : MonoBehaviour
             RedLight[2].enabled = false;
         }
         // 오른쪽도로
-        if (redDistanceValue < rightDistanceValue)
+        if (redDistanceValue > rightDistanceValue)
         {
             RedLight[3].enabled = true;
         }

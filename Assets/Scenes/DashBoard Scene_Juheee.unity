@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.2198529, g: 0.3861912, b: 0.58792615, a: 1}
+  m_IndirectSpecularColor: {r: 0.22013779, g: 0.38719642, b: 0.58935, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2639,7 +2639,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: kg
+  m_Text: cm
 --- !u!222 &135188790
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12238,9 +12238,9 @@ MonoBehaviour:
   leftPressureSensor: {fileID: 2092546450}
   rightDistanceSensor: {fileID: 28070199}
   rightPressureSensor: {fileID: 745349875}
-  yellowDistanceValue: 3
+  yellowDistanceValue: 8
   yellowPressureValue: 100
-  redDistanceValue: 7
+  redDistanceValue: 5
   redPressureValue: 200
 --- !u!114 &523836164
 MonoBehaviour:
@@ -12264,8 +12264,8 @@ MonoBehaviour:
   leftPressureSensor: {fileID: 2092546450}
   rightDistanceSensor: {fileID: 28070199}
   rightPressureSensor: {fileID: 745349875}
-  dangerDistanceValue: 8
-  dangerPressureValue: 201
+  dangerDistanceValue: 5
+  dangerPressureValue: 200
 --- !u!1001 &525068153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34559,7 +34559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB4DC\uB860 \uD655\uC778"
+  m_Text: "\uB4DC\uB860 \uC810\uAC80"
 --- !u!222 &1605635855
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38452,7 +38452,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB4DC\uB860 \uD655\uC778"
+  m_Text: "\uB4DC\uB860 \uC810\uAC80"
 --- !u!222 &1792762965
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42416,7 +42416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance1Text: {fileID: 1142133085}
   distance2Text: {fileID: 28070199}
-  temperatureText: {fileID: 0}
+  temperatureText: {fileID: 526255278}
   pressure1Text: {fileID: 2092546450}
   pressure2Text: {fileID: 745349875}
 --- !u!1 &1974265166
@@ -44257,7 +44257,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: cm
+  m_Text: kg
 --- !u!222 &2056866119
 CanvasRenderer:
   m_ObjectHideFlags: 0

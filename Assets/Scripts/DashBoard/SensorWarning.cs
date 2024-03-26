@@ -30,17 +30,17 @@ public class SensorWarning : MonoBehaviour
 
     void Update()
     {
-        WarningLight(leftDistanceSensor, dangerDistanceValue, RedLightImage[0]);
+        WarningDistanceLight(leftDistanceSensor, dangerDistanceValue, RedLightImage[0]);
         WarningLight(leftPressureSensor, dangerPressureValue, RedLightImage[1]);
-        WarningLight(rightDistanceSensor, dangerDistanceValue, RedLightImage[2]);
+        WarningDistanceLight(rightDistanceSensor, dangerDistanceValue, RedLightImage[2]);
         WarningLight(rightPressureSensor, dangerPressureValue, RedLightImage[3]);
     }
 
     // 센서 값에 따라 경고 불빛
-    private void WarningLight(TextMeshProUGUI sensorValue, float dangerValue, Image warningLight)
+    private void WarningDistanceLight(TextMeshProUGUI sensorValue, float dangerValue, Image warningLight)
     {
         float sensorFloatValue = float.Parse(sensorValue.text);
-        bool isDangerous = sensorFloatValue >= dangerValue;
+        bool isDangerous = sensorFloatValue < dangerValue;
         warningLight.gameObject.SetActive(isDangerous);
 
 
@@ -48,6 +48,20 @@ public class SensorWarning : MonoBehaviour
         {
             StartCoroutine(BlinkDronCheckText());
            
+        }
+    }
+
+    private void WarningLight(TextMeshProUGUI sensorValue, float dangerValue, Image warningLight)
+    {
+        float sensorFloatValue = float.Parse(sensorValue.text);
+        bool isDangerous = sensorFloatValue > dangerValue;
+        warningLight.gameObject.SetActive(isDangerous);
+
+
+        if (isDangerous && !isBlinking)
+        {
+            StartCoroutine(BlinkDronCheckText());
+
         }
     }
 
