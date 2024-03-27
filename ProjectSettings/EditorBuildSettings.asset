@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drone Inspection Scene.unity
     guid: f54f03c24b38e6541a226094ab30fce3
-  - enabled: 1
-    path: Assets/Scenes/Damage Analyze Scene.unity
-    guid: 49bc8697c87b70c4c984ec72f502bc46
   m_configObjects: {}
