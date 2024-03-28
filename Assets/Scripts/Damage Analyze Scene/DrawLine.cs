@@ -75,7 +75,6 @@ public class DrawLine : MonoBehaviour
         // 마우스 우클릭했을 때
         else if (Input.GetMouseButtonDown(1))
         {
-            
             // 총 거리값 구하기
             float total = 0;
             if (saveCell.distanceType == SaveCell.DistanceType.Far)
@@ -93,10 +92,9 @@ public class DrawLine : MonoBehaviour
                     float distance = Vector3.Distance(points[i], points[i + 1]);
                     total += distance;
                 }
-                total /= 2.8f;
+                total /= 3.0f;
             }
-            
-            DamageCell.SetDamageCell(cellNum, (points.Count < 3) ? "Straight" : "Thunder", total, DamageChartPanel);
+            DamageCell.SetDamageCell(cellNum, "Crack", total, DamageChartPanel);
             cellNum++;
             points.Clear();
             // 선 색깔 전환
