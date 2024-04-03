@@ -163,7 +163,7 @@ public class DroneController : MonoBehaviour
             case State.Landing:
 
                 myDrone.transform.Translate(Vector3.down * readySpeed * Time.deltaTime);
-                if (myDrone.transform.position.y < waypointBase.transform.position.y)
+                if (myDrone.transform.position.y < waypointBase.transform.position.y + 0.1f)
                 {
                     readySpeed = 0;
                     PausePropeller();

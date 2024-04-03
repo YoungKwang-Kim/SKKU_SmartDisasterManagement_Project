@@ -30,7 +30,7 @@ public class SaveDamageCell : MonoBehaviour
     {
         _number.text = number.ToString();
         _damaged.text = damaged;
-        _value.text = value.ToString("F2") + "cm";
+        _value.text = value.ToString("F1") + "cm";
         newCell = Instantiate(gameObject, parent);
         newCells.Add(newCell);
         RectTransform newCellTransform = newCell.GetComponent<RectTransform>();
